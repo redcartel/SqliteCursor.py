@@ -17,7 +17,7 @@ SqliteCursor.DBPATH sets a global default."""
     connections = {}
     pathstack = []
 
-    def __init__(self, dbpath=None, rowkeys=True, *args, **kwargs):
+    def __init__(self, dbpath=None, rowkeys=True, **kwargs):
         path = self.DBPATH
         if dbpath is not None:
             path = dbpath
@@ -27,7 +27,7 @@ SqliteCursor.DBPATH sets a global default."""
 
         if path not in self.connections.keys():
             # if path has not yet been seen, open a connection for it
-            self.connections[path] = sqlite3.connect(path, *args, **kwargs)
+            self.connections[path] = sqlite3.connect(path, **kwargs)
 
             if rowkeys:
                 # fetch results have named indexing
